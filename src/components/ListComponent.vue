@@ -1,11 +1,11 @@
 <template>
     <div id="root">
-        <div id="defaultItem" :class="defaultItemStyle">
+        <!-- <div id="defaultItem" :class="defaultItemStyle">
             <ItemComponent></ItemComponent>
-        </div>
+        </div> -->
         
         <ul class="todo-main">
-
+            <ItemComponent v-for="todo in todoList" :key="todo.id" :todo="todo"></ItemComponent>
         </ul>
     </div>
 
@@ -20,7 +20,7 @@ export default{
     data(){
         return {
             defaultItemStyle: "displayDefaultItemStyle",
-            todoList:[]
+
         }
     },
     methods:{
@@ -34,7 +34,8 @@ export default{
     },
     components:{
         ItemComponent
-    }
+    },
+    props:["todoList"]
 }
 </script>
 
@@ -46,6 +47,10 @@ export default{
 
 .notDisplayDefaultItemStyle{
     display: None;
+}
+
+#todo-main{
+    height: 500px;
 }
 
 </style>

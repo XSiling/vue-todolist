@@ -10,6 +10,7 @@
 
 
 <script>
+import {nanoid} from 'nanoid'
 export default{
     name: 'HeaderComponent',
     data(){
@@ -19,10 +20,12 @@ export default{
     },
     methods:{
         addItem: function(e){
-            console.log(e);
-            console.log("?");
+            console.log(e.target.value);
+            const todo = {id:nanoid(), name:e.target.value, done: false}
+            this.receive(todo);
         }
-    }
+    },
+    props:['receive']
 
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
     <div id="root">
         <div :class="todoEventStyle" >
-            <input type="checkbox" name="done" @click="changeCheckBox">
-            默认待办事项
+            <input type="checkbox" name="done" @click="changeCheckBox" :checked="todo.done">
+            {{ todo.name }}
         </div>
 
     </div>
@@ -17,6 +17,7 @@ export default{
             todoEventStyle: "todoEvent"
         }
     },
+    props:['todo'],
     methods:{
         changeCheckBox(e){
             //console.log(e);

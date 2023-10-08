@@ -2,9 +2,9 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- //<HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <div id="appRoot">
-    <HeaderComponent></HeaderComponent>
+    <HeaderComponent :receive="receive"></HeaderComponent>
     <hr>
-    <ListComponent></ListComponent>
+    <ListComponent :todoList="todoList"></ListComponent>
     <hr>
     <FooterComponent></FooterComponent>
   </div>
@@ -22,7 +22,21 @@ export default {
     HeaderComponent,
     ListComponent,
     FooterComponent
-
+  },
+  data(){
+    return{
+      todoList:[
+                {id:'001', name:"学习Vue", done: false},
+                {id:'002', name:"刷leetcode", done: false},
+                {id:'003', name:"投简历", done: false}
+            ]
+    }
+  },
+  methods:{
+    receive(x){
+      console.log(x);
+      this.todoList.unshift(x);
+    }
   }
 }
 </script>
