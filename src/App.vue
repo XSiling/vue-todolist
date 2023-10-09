@@ -6,7 +6,7 @@
     <hr>
     <ListComponent :todoList="todoList" :handleCheck="handleCheck" :deleteTodo="deleteTodo"></ListComponent>
     <hr>
-    <FooterComponent></FooterComponent>
+    <FooterComponent :todoList="todoList"></FooterComponent>
   </div>
 </template>
 

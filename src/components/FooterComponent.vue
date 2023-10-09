@@ -15,13 +15,24 @@ export default{
     name: 'FooterComponent',
     data(){
         return {
-            completeNum: 0,
-            allNum: 0
+            allNum : this.todoList.length
 
         }
     },
+    props:["todoList"],
     methods:{
 
+    },
+    computed:{
+        completeNum(){
+            let i=0;
+            this.todoList.forEach((todo)=>{
+                if (todo.done){
+                    i ++;
+                }
+            })
+            return i;
+        }
     }
 }
 </script>
