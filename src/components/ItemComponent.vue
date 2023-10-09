@@ -1,8 +1,9 @@
 <template>
-    <div id="root">
+    <div id="rootItem">
         <div :class="todoEventStyle" >
-            <input type="checkbox" name="done" @click="changeCheckBox" :checked="todo.done">
+            <input type="checkbox" name="done" @click="changeCheckBox(todo.id)" :checked="todo.done">
             {{ todo.name }}
+            <button class="btn btn-danger" @click="deleteItem(todo.id)">删除</button>
         </div>
 
     </div>
@@ -17,15 +18,27 @@ export default{
             todoEventStyle: "todoEvent"
         }
     },
-    props:['todo'],
+    props:['todo',"handleCheck", "deleteTodo"],
     methods:{
-        changeCheckBox(e){
+        changeCheckBox(id){
             //console.log(e);
             //console.log(e.target.checked);
-            if (e.target.checked){
+            // if (e.target.checked){
+            //     this.todoEventStyle = "todoEventChecked";
+            // }else{
+            //     this.todoEventStyle = "todoEvent"
+            // }
+            if (this.todoEventStyle == "todoEvent"){
                 this.todoEventStyle = "todoEventChecked";
             }else{
-                this.todoEventStyle = "todoEvent"
+                this.todoEventStyle = "todoEvent";
+            }
+            this.handleCheck(id);
+        },
+        deleteItem(id){
+            if (confirm("确定删除？")){
+                console.log(id);
+                this.deleteTodo(id);
             }
         }
     }
@@ -38,5 +51,19 @@ export default{
 .todoEventChecked{
     text-decoration: line-through;
     color: gray;
+}
+
+#rootItem:hover{
+    background-color:green;
+}
+
+button{
+    display:none;
+    float:right;
+    margin-right:50px;
+}
+
+#rootItem:hover button{
+    display: block;
 }
 </style>

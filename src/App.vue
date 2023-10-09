@@ -4,7 +4,7 @@
   <div id="appRoot">
     <HeaderComponent :receive="receive"></HeaderComponent>
     <hr>
-    <ListComponent :todoList="todoList"></ListComponent>
+    <ListComponent :todoList="todoList" :handleCheck="handleCheck" :deleteTodo="deleteTodo"></ListComponent>
     <hr>
     <FooterComponent></FooterComponent>
   </div>
@@ -30,12 +30,22 @@ export default {
                 {id:'002', name:"刷leetcode", done: false},
                 {id:'003', name:"投简历", done: false}
             ]
-    }
+    } 
   },
   methods:{
     receive(x){
       console.log(x);
       this.todoList.unshift(x);
+    },
+    handleCheck(id){
+      this.todoList.forEach((todo)=>{
+        if (todo.id ===id ) todo.done =!todo.done;
+      })
+    },
+    deleteTodo(id){
+      this.todoList = this.todoList.filter((todo)=>{
+        return todo.id !== id;
+      })
     }
   }
 }

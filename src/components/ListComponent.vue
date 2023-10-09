@@ -5,7 +5,7 @@
         </div> -->
         
         <ul class="todo-main">
-            <ItemComponent v-for="todo in todoList" :key="todo.id" :todo="todo"></ItemComponent>
+            <ItemComponent v-for="todo in todoList" :key="todo.id" :todo="todo" :handleCheck="handleCheck" :deleteTodo="deleteTodo"></ItemComponent>
         </ul>
     </div>
 
@@ -35,7 +35,7 @@ export default{
     components:{
         ItemComponent
     },
-    props:["todoList"]
+    props:["todoList","handleCheck","deleteTodo"]
 }
 </script>
 

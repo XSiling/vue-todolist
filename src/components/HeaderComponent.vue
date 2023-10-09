@@ -2,7 +2,7 @@
     <div id="headerRoot">
         <div class="inputBox">
             <p class="hintText">请在此输入待办事项：</p>
-            <input id="inputItem" @keydown.enter="addItem" v-model=eventText>
+            <input id="inputItem" @keydown.enter="addItem" v-model=eventText placeholder="事件名称">
         </div>
         
     </div>
@@ -15,14 +15,18 @@ export default{
     name: 'HeaderComponent',
     data(){
         return{
-            eventText:"这是一个默认事件"
+            eventText:""
         }
     },
     methods:{
         addItem: function(e){
+            if (e.target.value==""){
+                return;
+            }
             console.log(e.target.value);
             const todo = {id:nanoid(), name:e.target.value, done: false}
             this.receive(todo);
+            this.eventText="";
         }
     },
     props:['receive']
